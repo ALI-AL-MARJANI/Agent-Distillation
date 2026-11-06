@@ -82,6 +82,6 @@ data/traces/    teacher traces: every LLM call of every question
 src/distill/    question templates, leakage check, trace recorder, filter, chat format, metrics
 scripts/        one script per step, in RUNBOOK.md order
 results/        leakage report, filter report, training run, evaluations, tables, error analysis
-docs/           architecture.png (scripts/make_architecture.py)
+docs/           architecture.png (scripts/make_architecture.py), devlog.md (what broke and how it was fixed)
 tests/          offline tests (no model, no Ollama) + one slow check against the real Ollama server
 ```
