@@ -46,8 +46,8 @@ Start Ollama first (`ollama serve`, or the menu bar app). Times marked "not meas
 | Student weights (Hugging Face, 2.9 GB) | see below | 1 min 50 s | `models/qwen2.5-coder-1.5b-instruct/` |
 | Base student into Ollama (Q4_K_M) | `python scripts/import_ollama.py models/qwen2.5-coder-1.5b-instruct student-base` | 1 min 01 s | Ollama model `student-base` |
 | Timing run (20 steps) | `python scripts/train.py --timing` | 5 min 18 s | `results/train/timing.json` |
-| LoRA training | `python scripts/train.py` | not measured yet | `results/train/lora.json`, `loss.png`, `adapter/` |
-| Fuse adapter into the weights | `mlx_lm.fuse --model models/qwen2.5-coder-1.5b-instruct --adapter-path models/adapters/distilled --save-path models/fused-distilled` | not measured yet | `models/fused-distilled/` |
+| LoRA training | `python scripts/train.py` | 51 min (3,058.5 s) | `results/train/lora.json`, `loss.png`, `adapter/` |
+| Fuse adapter into the weights | `mlx_lm.fuse --model models/qwen2.5-coder-1.5b-instruct --adapter-path models/adapters/distilled --save-path models/fused-distilled` | 6 s | `models/fused-distilled/` |
 | Distilled student into Ollama | `python scripts/import_ollama.py models/fused-distilled student-distilled` | not measured yet | Ollama model `student-distilled` |
 | Evaluation, 50 questions, per model | `python scripts/evaluate.py --config configs/<teacher, student_base, student_distilled>.yaml` | not measured yet | `results/eval/<name>.json` + `_per_question.jsonl` |
 | Ollama template check (slow test) | `pytest -m slow tests/test_ollama_template.py` | 5 s | - |
