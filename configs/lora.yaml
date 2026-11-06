@@ -1,0 +1,26 @@
+# mlx_lm.lora config (scripts/train.py passes it with -c). Paths are relative to the repo root.
+# Everything is the mlx-lm 0.32.2 default except: model, data, mask_prompt, iters, steps_per_eval, val_batches,
+# grad_checkpoint.
+model: models/qwen2.5-coder-1.5b-instruct   # Qwen/Qwen2.5-Coder-1.5B-Instruct @ 2e1fd397 (bf16)
+train: true
+data: data/sft                     # train.jsonl / valid.jsonl from scripts/filter_traces.py
+adapter_path: models/adapters/distilled
+fine_tune_type: lora
+mask_prompt: true                  # loss only on the assistant message (the teacher's output), not the prompt
+seed: 0
+
+iters: 287                         # 2 epochs: 574 training examples x 2 / batch 4 (results/filter/report.json)
+batch_size: 4                      # default
+learning_rate: 1.0e-5              # default
+num_layers: 16                     # default: LoRA on the last 16 of the 28 transformer blocks
+lora_parameters:                   # default
+  rank: 8
+  scale: 20.0
+  dropout: 0.0
+max_seq_length: 2048               # default; no training example is longer (results/filter/report.json)
+
+steps_per_report: 10               # default
+steps_per_eval: 50                 # validation loss every 50 steps (default 200: too few points for a curve)
+val_batches: -1                    # the whole validation set every time (default 25 batches)
+save_every: 100                    # default
+grad_checkpoint: true              # batch 4 ran out of GPU memory without it (11.45 GB Metal limit); same math, slower

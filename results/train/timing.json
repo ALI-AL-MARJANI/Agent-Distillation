@@ -1,0 +1,126 @@
+{
+  "date": "2026-11-06T10:42:03+00:00",
+  "git_sha": "7b8e2df6313dccc762832c3e7809d57f676db873-dirty",
+  "agent_commit": "ad9ed1871af245b50c966e0b6f12c79005e71e60",
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.12.15",
+    "cpu": "Apple M4",
+    "ram_gb": 16.0
+  },
+  "versions": {
+    "analyst": "0.1.0",
+    "langgraph": "1.2.20",
+    "langchain-core": "1.7.6",
+    "langchain-ollama": "1.1.0",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "mlx": "0.32.4",
+    "mlx-lm": "0.32.2"
+  },
+  "config": {
+    "model": "models/qwen2.5-coder-1.5b-instruct",
+    "train": true,
+    "data": "data/sft",
+    "adapter_path": "models/adapters/timing",
+    "fine_tune_type": "lora",
+    "mask_prompt": true,
+    "seed": 0,
+    "iters": 20,
+    "batch_size": 4,
+    "learning_rate": 1e-05,
+    "num_layers": 16,
+    "lora_parameters": {
+      "rank": 8,
+      "scale": 20.0,
+      "dropout": 0.0
+    },
+    "max_seq_length": 2048,
+    "steps_per_report": 10,
+    "steps_per_eval": 1000,
+    "val_batches": -1,
+    "save_every": 100,
+    "grad_checkpoint": true
+  },
+  "mlx_lm_args": {
+    "model": "/Users/aliiii/Desktop/projects/Data analyst agent/Agent-Distillation/models/qwen2.5-coder-1.5b-instruct",
+    "train": true,
+    "fine_tune_type": "lora",
+    "optimizer": "adam",
+    "optimizer_config": {
+      "adam": {},
+      "adamw": {},
+      "muon": {},
+      "sgd": {},
+      "adafactor": {}
+    },
+    "data": "/Users/aliiii/Desktop/projects/Data analyst agent/Agent-Distillation/data/sft",
+    "seed": 0,
+    "num_layers": 16,
+    "batch_size": 4,
+    "iters": 20,
+    "val_batches": -1,
+    "learning_rate": 1e-05,
+    "steps_per_report": 10,
+    "steps_per_eval": 1000,
+    "resume_adapter_file": null,
+    "adapter_path": "/Users/aliiii/Desktop/projects/Data analyst agent/Agent-Distillation/models/adapters/timing",
+    "save_every": 100,
+    "test": false,
+    "test_batches": 500,
+    "max_seq_length": 2048,
+    "config": null,
+    "grad_checkpoint": true,
+    "grad_accumulation_steps": 1,
+    "clear_cache_threshold": 0,
+    "lr_schedule": null,
+    "lora_parameters": {
+      "rank": 8,
+      "scale": 20.0,
+      "dropout": 0.0
+    },
+    "mask_prompt": true,
+    "report_to": null,
+    "project_name": null,
+    "trust_remote_code": false
+  },
+  "wall_clock_s": 317.6,
+  "validation_s": 130.6,
+  "peak_mem_gb": 6.827959418,
+  "train_examples_sha256": "7111e3a8bf8dd5431fc5e0f277ffb3ee1b45c0b5c489092dde4baf64b21e8094",
+  "losses": {
+    "train": [
+      {
+        "iteration": 10.0,
+        "train_loss": 0.5995214462280274,
+        "learning_rate": 9.999999747378752e-06,
+        "iterations_per_second": 0.10697934928531873,
+        "tokens_per_second": 27.5899741806837,
+        "trained_tokens": 2579.0,
+        "peak_memory": 6.827959418
+      },
+      {
+        "iteration": 20.0,
+        "train_loss": 0.21153247356414795,
+        "learning_rate": 9.999999747378752e-06,
+        "iterations_per_second": 0.10945435346563517,
+        "tokens_per_second": 28.775549526115487,
+        "trained_tokens": 5208.0,
+        "peak_memory": 6.827959418
+      }
+    ],
+    "val": [
+      {
+        "iteration": 0.0,
+        "val_loss": 1.0978044271469116,
+        "val_time": 59.766627916997095
+      },
+      {
+        "iteration": 19.0,
+        "val_loss": 0.22278831899166107,
+        "val_time": 70.85463416700077
+      }
+    ]
+  }
+}
