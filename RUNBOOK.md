@@ -52,6 +52,7 @@ user messages, which changes the retry prompt, see `tests/test_ollama_template.p
 | Distilled student into Ollama | `python scripts/import_ollama.py models/fused-distilled student-distilled` | not measured yet | Ollama model `student-distilled` |
 | Evaluation, 50 questions, per model | `python scripts/evaluate.py --config configs/<teacher, student_base, student_distilled>.yaml` | 18 min, 12 min 35 s, 6 min 34 s | `results/eval/<name>.json` + `_per_question.jsonl` |
 | Tables, held-out split, error analysis | `python scripts/analyze_eval.py` | ~1 s | `results/tables.md`, `results/error_analysis.md`, `results/eval/breakdown.json` |
+| Architecture diagram | `python scripts/make_architecture.py` | ~1 s | `docs/architecture.png` |
 | Ollama template check (slow test) | `pytest -m slow tests/test_ollama_template.py` | 5 s | - |
 
 Student weights:
