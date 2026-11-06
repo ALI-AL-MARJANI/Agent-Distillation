@@ -53,8 +53,6 @@ def plot(losses: dict, out) -> None:
         if pts := losses[key]:
             x, y = [p["iteration"] for p in pts], [p[field] for p in pts]
             ax.plot(x, y, color=color, lw=2, marker="o" if key == "val" else None, ms=4, label=label)
-            ax.annotate(label, (x[-1], y[-1]), xytext=(6, 0), textcoords="offset points", color=ink,
-                        fontsize=9, va="center")  # fmt: skip
     ax.set_xlabel("training step", color=muted)
     ax.set_ylabel("loss on the teacher's tokens", color=muted)
     ax.grid(color=grid, lw=0.8)
