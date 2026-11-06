@@ -1,0 +1,62 @@
+{
+  "date": "2026-11-06T09:12:59+00:00",
+  "git_sha": "7b8e2df6313dccc762832c3e7809d57f676db873-dirty",
+  "agent_commit": "ad9ed1871af245b50c966e0b6f12c79005e71e60",
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.12.15",
+    "cpu": "Apple M4",
+    "ram_gb": 16.0
+  },
+  "versions": {
+    "analyst": "0.1.0",
+    "langgraph": "1.2.20",
+    "langchain-core": "1.7.6",
+    "langchain-ollama": "1.1.0",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "mlx": "0.32.4",
+    "mlx-lm": "0.32.2"
+  },
+  "config": {
+    "name": "teacher",
+    "llm": {
+      "model": "qwen2.5-coder:7b",
+      "temperature": 0.0,
+      "seed": 0,
+      "num_ctx": 8192
+    },
+    "data": {
+      "csv": "data/raw/online_retail_ii.csv",
+      "parse_dates": [
+        "InvoiceDate"
+      ],
+      "sample_rows": 5
+    },
+    "agent": {
+      "max_retries": 3,
+      "sample_note": true,
+      "retry_hints": true
+    },
+    "sandbox": {
+      "timeout_s": 30,
+      "allowed_imports": [
+        "pandas",
+        "numpy",
+        "matplotlib",
+        "math",
+        "datetime",
+        "statistics",
+        "re",
+        "collections"
+      ]
+    }
+  },
+  "batch": 1,
+  "n": 100,
+  "n_correct": 76,
+  "n_crash": 0,
+  "wall_clock_s_this_run": 2146.5,
+  "sum_latency_s": 2146.3
+}
