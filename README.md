@@ -8,7 +8,7 @@
 
 ---
 
-## TL;DR
+## In short 
 
 - I fine-tuned Qwen2.5-Coder **1.5B** on the correct answers of Qwen2.5-Coder **7B**, inside the same agent. It went from **19/50** to **37/50** correct answers. The 7B gets 43/50.
 - On the 30 held-out questions, the small model gets **25/30**, against 26/30 for the 7B.
