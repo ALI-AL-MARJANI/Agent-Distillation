@@ -13,6 +13,11 @@ __pycache__/
 # downloaded / derived data (rebuilt by scripts/get_data.py; see RUNBOOK.md)
 data/raw/
 
+# derived or working files: rebuilt by the scripts, or only useful while working
+*.log
+data/sft/
+results/STATUS.md
+
 # model weights: base model (Hugging Face cache), fused models; adapters are small and kept in results/
 models/
 

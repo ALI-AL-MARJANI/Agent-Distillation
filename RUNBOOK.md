@@ -9,7 +9,8 @@ unified memory) unless marked "estimate".
 uv venv --python 3.12 .venv
 uv sync --all-extras                 # pinned by uv.lock; installs the agent from GitHub at commit ad9ed18
 source .venv/bin/activate
-pytest                               # 27 fast tests, <1 s: no dataset, no Ollama, no model download
+pytest                               # 39 fast tests, ~2 s: no dataset, no Ollama, no model download
+uv sync --all-extras                 # includes the `train` extra (mlx-lm, Apple Silicon only)
 ```
 
 The agent (`analyst` package: LangGraph graph, sandbox, scoring) is installed unchanged from
@@ -34,3 +35,29 @@ Without a local zip, `python scripts/get_data.py` downloads it from UCI (it took
 - **Leakage check:** no training question equals an eval question after normalization, and none shares 60 % or
   more of its words with one (Jaccard). Eval parameters are also excluded from the matching templates
   (e.g. no "revenue for the Netherlands", which is q07).
+
+## 2. Teacher traces, filtering, training, evaluation
+
+Start Ollama first (`ollama serve`, or the menu bar app). Times marked "not measured yet" are filled in once run.
+
+| Step | Command | Time (M4) | Output |
+|---|---|---|---|
+| Teacher traces (3 batches of 100, resumable) | `python scripts/run_teacher.py --batch 1` (then 2, 3) | 35 min 48 s, 34 min 28 s, 38 min 28 s | `data/traces/teacher.jsonl`, `results/traces/teacher_batch_<n>.json` |
+| Rejection sampling + training examples | `python scripts/filter_traces.py` | 2 s | `data/sft/{train,valid}.jsonl`, `results/filter/report.json` |
+| Student weights (Hugging Face, 2.9 GB) | see below | 1 min 50 s | `models/qwen2.5-coder-1.5b-instruct/` |
+| Base student into Ollama (Q4_K_M) | `python scripts/import_ollama.py models/qwen2.5-coder-1.5b-instruct student-base` | 1 min 01 s | Ollama model `student-base` |
+| Timing run (20 steps) | `python scripts/train.py --timing` | 5 min 18 s | `results/train/timing.json` |
+| LoRA training | `python scripts/train.py` | not measured yet | `results/train/lora.json`, `loss.png`, `adapter/` |
+| Fuse adapter into the weights | `mlx_lm.fuse --model models/qwen2.5-coder-1.5b-instruct --adapter-path models/adapters/distilled --save-path models/fused-distilled` | not measured yet | `models/fused-distilled/` |
+| Distilled student into Ollama | `python scripts/import_ollama.py models/fused-distilled student-distilled` | not measured yet | Ollama model `student-distilled` |
+| Evaluation, 50 questions, per model | `python scripts/evaluate.py --config configs/<teacher, student_base, student_distilled>.yaml` | not measured yet | `results/eval/<name>.json` + `_per_question.jsonl` |
+| Ollama template check (slow test) | `pytest -m slow tests/test_ollama_template.py` | 5 s | - |
+
+Student weights:
+
+```bash
+python -c "from huggingface_hub import snapshot_download; snapshot_download('Qwen/Qwen2.5-Coder-1.5B-Instruct', revision='2e1fd397ee46e1388853d2af2c993145b0f1098a', local_dir='models/qwen2.5-coder-1.5b-instruct')"
+```
+
+Disk: `ollama create` from safetensors keeps a raw copy (3.1 GB) and an f16 copy (3.1 GB) of the weights in
+`~/.ollama/models/blobs` next to the 1 GB Q4_K_M model. Plan ~7 GB free per import.
