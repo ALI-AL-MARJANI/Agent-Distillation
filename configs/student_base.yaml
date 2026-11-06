@@ -1,0 +1,22 @@
+name: student_base          # = configs/teacher.yaml, only the model changes
+
+llm:
+  model: student-base       # Qwen2.5-Coder-1.5B-Instruct (Q4_K_M), imported by scripts/import_ollama.py
+  temperature: 0.0
+  seed: 0
+  num_ctx: 8192
+
+data:
+  csv: data/raw/online_retail_ii.csv   # built by scripts/get_data.py
+  parse_dates: [InvoiceDate]
+  sample_rows: 5                       # rows shown to the LLM; it never sees the full data
+
+agent:
+  max_retries: 3            # extra write_code -> run_code rounds after a failed run (0 = no self-correction)
+  sample_note: true         # v2: tell `understand` the sample rows are not the whole data
+  retry_hints: true         # v2: number the failed code's lines, warn when the model repeats a failed attempt
+
+sandbox:
+  timeout_s: 30             # wall clock, includes loading the 1M-row CSV
+  # pandas / numpy / matplotlib plus a few pure-computation stdlib modules the model often imports
+  allowed_imports: [pandas, numpy, matplotlib, math, datetime, statistics, re, collections]
