@@ -1,5 +1,4 @@
-# environments (uv.lock stays local; exact versions are recorded in every results/*.json)
-uv.lock
+# environments
 venv/
 .venv/
 .env

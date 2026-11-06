@@ -7,7 +7,7 @@ unified memory) unless marked "estimate".
 
 ```bash
 uv venv --python 3.12 .venv
-uv sync --all-extras                 # agent from GitHub at commit ad9ed18 + `train` extra (mlx-lm, Apple Silicon)
+uv sync --all-extras                 # pinned by uv.lock; agent from GitHub at commit ad9ed18 + `train` extra (mlx-lm, Apple Silicon)
 source .venv/bin/activate
 pytest                               # 39 fast tests, ~2 s: no dataset, no Ollama, no model download
 ```
