@@ -21,6 +21,19 @@ HF_REVISION = "2e1fd397ee46e1388853d2af2c993145b0f1098a"  # Qwen/Qwen2.5-Coder-1
 OLLAMA_TEMPLATE = REPO_ROOT / "configs/ollama/chatml.gotmpl"
 
 
+def collate(messages: list[dict]) -> list[dict]:
+    """What Ollama does before applying its template (template/template.go, `collate`): consecutive messages
+    with the same role are merged into one, joined by a blank line. The agent's retry call sends two user
+    messages in a row, so training examples get the same merge to match what the model sees when served."""
+    out: list[dict] = []
+    for m in messages:
+        if out and out[-1]["role"] == m["role"]:
+            out[-1] = {**out[-1], "content": out[-1]["content"] + "\n\n" + m["content"]}
+        else:
+            out.append(dict(m))
+    return out
+
+
 def render_hf(messages: list[dict], add_generation_prompt: bool, template: Path = HF_TEMPLATE) -> str:
     """Same Jinja settings as transformers' apply_chat_template (trim_blocks, lstrip_blocks, sandboxed)."""
     env = ImmutableSandboxedEnvironment(trim_blocks=True, lstrip_blocks=True)
@@ -30,6 +43,6 @@ def render_hf(messages: list[dict], add_generation_prompt: bool, template: Path 
 
 
 def render_ollama(messages: list[dict]) -> str:
-    """Python copy of configs/ollama/chatml.gotmpl. Ollama always ends with the generation prompt."""
-    turns = "".join(f"<|im_start|>{m['role']}\n{m['content']}<|im_end|>\n" for m in messages)
+    """Python copy of Ollama's collate + configs/ollama/chatml.gotmpl. Always ends with the generation prompt."""
+    turns = "".join(f"<|im_start|>{m['role']}\n{m['content']}<|im_end|>\n" for m in collate(messages))
     return turns + "<|im_start|>assistant\n"

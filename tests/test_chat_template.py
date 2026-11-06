@@ -3,7 +3,7 @@
 import pytest
 from analyst.graph import ANSWER_SYSTEM, RETRY_HINTS_PROMPT, UNDERSTAND_SYSTEM, WRITE_SYSTEM
 
-from distill.chat_format import OLLAMA_TEMPLATE, render_hf, render_ollama
+from distill.chat_format import OLLAMA_TEMPLATE, collate, render_hf, render_ollama
 
 SCHEMA = "8 rows. Columns (name: dtype):\n- 'Invoice': str\n- 'Price': float64"
 CODE = '{"plan": "sum revenue", "code": "result = (df[\'Quantity\'] * df[\'Price\']).sum()"}'
@@ -36,14 +36,22 @@ CALLS = {
 
 @pytest.mark.parametrize("call", CALLS)
 def test_training_prompt_equals_serving_prompt(call):
-    assert render_hf(CALLS[call], add_generation_prompt=True) == render_ollama(CALLS[call])
+    """Training examples are collated (scripts/filter_traces.py via distill.sft), like Ollama does."""
+    assert render_hf(collate(CALLS[call]), add_generation_prompt=True) == render_ollama(CALLS[call])
+
+
+def test_retry_messages_are_merged_like_ollama():
+    merged = collate(CALLS["retry"])
+    assert [m["role"] for m in merged] == ["system", "user"]
+    assert merged[1]["content"] == CALLS["retry"][1]["content"] + "\n\n" + CALLS["retry"][2]["content"]
+    assert len(CALLS["retry"]) == 3  # the input is not modified
 
 
 @pytest.mark.parametrize("call", CALLS)
 def test_prompt_is_a_prefix_of_the_training_example(call):
     """--mask-prompt hides the prompt tokens from the loss: that only works if the prompt is an exact prefix."""
-    prompt = render_hf(CALLS[call], add_generation_prompt=True)
-    full = render_hf([*CALLS[call], msg("assistant", CODE)], add_generation_prompt=False)
+    prompt = render_hf(collate(CALLS[call]), add_generation_prompt=True)
+    full = render_hf(collate([*CALLS[call], msg("assistant", CODE)]), add_generation_prompt=False)
     assert full == prompt + CODE + "<|im_end|>\n"  # the student learns to stop with <|im_end|>
 
 
