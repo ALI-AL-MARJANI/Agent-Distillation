@@ -7,7 +7,6 @@ name = "distill"
 version = "0.1.0"
 description = "Distilling a LangGraph data analyst agent (Qwen2.5-Coder 7B) into Qwen2.5-Coder 1.5B with LoRA on filtered teacher traces."
 readme = "README.md"
-license = "MIT"
 requires-python = ">=3.12,<3.14"
 authors = [{ name = "Ali Al Marjani" }]
 dependencies = [
