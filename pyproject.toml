@@ -25,6 +25,9 @@ dev = [
     "pytest>=9.0",
     "ruff>=0.8",
 ]
+train = [
+    "mlx-lm>=0.32.2",
+]
 
 [tool.hatch.metadata]
 allow-direct-references = true
