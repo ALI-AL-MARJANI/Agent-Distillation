@@ -1,0 +1,169 @@
+{
+  "date": "2026-11-06T11:52:10+00:00",
+  "git_sha": "02114aebc724f7efbcecd4841b2dfb18dac41428",
+  "agent_commit": "ad9ed1871af245b50c966e0b6f12c79005e71e60",
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.12.15",
+    "cpu": "Apple M4",
+    "ram_gb": 16.0
+  },
+  "versions": {
+    "analyst": "0.1.0",
+    "langgraph": "1.2.20",
+    "langchain-core": "1.7.6",
+    "langchain-ollama": "1.1.0",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4",
+    "mlx": "0.32.4",
+    "mlx-lm": "0.32.2"
+  },
+  "config": {
+    "name": "teacher",
+    "llm": {
+      "model": "qwen2.5-coder:7b",
+      "temperature": 0.0,
+      "seed": 0,
+      "num_ctx": 8192
+    },
+    "data": {
+      "csv": "data/raw/online_retail_ii.csv",
+      "parse_dates": [
+        "InvoiceDate"
+      ],
+      "sample_rows": 5
+    },
+    "agent": {
+      "max_retries": 3,
+      "sample_note": true,
+      "retry_hints": true
+    },
+    "sandbox": {
+      "timeout_s": 30,
+      "allowed_imports": [
+        "pandas",
+        "numpy",
+        "matplotlib",
+        "math",
+        "datetime",
+        "statistics",
+        "re",
+        "collections"
+      ]
+    }
+  },
+  "ollama": {
+    "model": "qwen2.5-coder:7b",
+    "server_version": "0.18.2",
+    "digest": "dae161e27b0e90dd1856c8bb3209201fd6736d8eb66298e75ed87571486f4364",
+    "file_size_bytes": 4683087561,
+    "quantization": "Q4_K_M",
+    "parameter_size": "7.6B",
+    "loaded_size_bytes": 5341542400,
+    "loaded_size_vram_bytes": 5341542400,
+    "context_length": 8192
+  },
+  "eval_questions_sha256": "df4da862847999f90ba70f2a5fde2264dfef9076e1aab2bc3373dfa073d9e7a4",
+  "eval_truth_sha256": "5d7e214d4233ef664b2b1c93d28039e2178c9d0b4ca5a013e60b560cf2b76fe0",
+  "question_ids": [
+    "q01",
+    "q02",
+    "q03",
+    "q04",
+    "q05",
+    "q06",
+    "q07",
+    "q08",
+    "q09",
+    "q10",
+    "q11",
+    "q12",
+    "q13",
+    "q14",
+    "q15",
+    "q16",
+    "q17",
+    "q18",
+    "q19",
+    "q20",
+    "h01",
+    "h02",
+    "h03",
+    "h04",
+    "h05",
+    "h06",
+    "h07",
+    "h08",
+    "h09",
+    "h10",
+    "h11",
+    "h12",
+    "h13",
+    "h14",
+    "h15",
+    "h16",
+    "h17",
+    "h18",
+    "h19",
+    "h20",
+    "h21",
+    "h22",
+    "h23",
+    "h24",
+    "h25",
+    "h26",
+    "h27",
+    "h28",
+    "h29",
+    "h30"
+  ],
+  "summary": {
+    "all": {
+      "n": 50,
+      "n_correct": 43,
+      "accuracy": 0.86,
+      "failures": {
+        "false_refusal": 1,
+        "wrong_value": 5,
+        "answered_unanswerable": 1
+      },
+      "questions_that_ran_code": 45,
+      "avg_retries": 0.08888888888888889,
+      "first_run_ok": 43,
+      "fixed_by_retry": 2,
+      "latency_s_p50": 20.84,
+      "latency_s_p90": 30.068
+    },
+    "dev": {
+      "n": 20,
+      "n_correct": 17,
+      "accuracy": 0.85,
+      "failures": {
+        "false_refusal": 1,
+        "wrong_value": 2
+      },
+      "questions_that_ran_code": 17,
+      "avg_retries": 0.17647058823529413,
+      "first_run_ok": 16,
+      "fixed_by_retry": 1,
+      "latency_s_p50": 20.055,
+      "latency_s_p90": 27.29100000000002
+    },
+    "heldout": {
+      "n": 30,
+      "n_correct": 26,
+      "accuracy": 0.8666666666666667,
+      "failures": {
+        "wrong_value": 3,
+        "answered_unanswerable": 1
+      },
+      "questions_that_ran_code": 28,
+      "avg_retries": 0.03571428571428571,
+      "first_run_ok": 27,
+      "fixed_by_retry": 1,
+      "latency_s_p50": 21.54,
+      "latency_s_p90": 30.068
+    }
+  }
+}
