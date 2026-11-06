@@ -34,3 +34,10 @@ def test_splits_are_reported_separately():
     s = summarize_splits(ROWS)
     assert s["all"]["n"] == 4 and s["dev"]["n"] == 1 and s["heldout"]["n"] == 3
     assert s["heldout"]["n_correct"] == 2
+
+
+def test_fisher_exact_matches_known_values():
+    from distill.metrics import fisher_exact
+
+    assert fisher_exact(3, 1, 1, 3) == pytest.approx(0.4857, abs=1e-4)  # classic tea-tasting table
+    assert fisher_exact(5, 5, 5, 5) == pytest.approx(1.0)
