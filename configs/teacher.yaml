@@ -1,0 +1,22 @@
+name: teacher               # Data-Analyst-Agent configs/agent.yaml (v2) at ad9ed18, only the name changed
+
+llm:
+  model: qwen2.5-coder:7b   # Qwen2.5-Coder 7B Instruct (Q4_K_M) via Ollama
+  temperature: 0.0
+  seed: 0
+  num_ctx: 8192
+
+data:
+  csv: data/raw/online_retail_ii.csv   # built by scripts/get_data.py
+  parse_dates: [InvoiceDate]
+  sample_rows: 5                       # rows shown to the LLM; it never sees the full data
+
+agent:
+  max_retries: 3            # extra write_code -> run_code rounds after a failed run (0 = no self-correction)
+  sample_note: true         # v2: tell `understand` the sample rows are not the whole data
+  retry_hints: true         # v2: number the failed code's lines, warn when the model repeats a failed attempt
+
+sandbox:
+  timeout_s: 30             # wall clock, includes loading the 1M-row CSV
+  # pandas / numpy / matplotlib plus a few pure-computation stdlib modules the model often imports
+  allowed_imports: [pandas, numpy, matplotlib, math, datetime, statistics, re, collections]
