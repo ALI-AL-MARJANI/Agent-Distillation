@@ -2,7 +2,7 @@
 
 # Agent Distillation
 
-**Can a 1.5B model, trained on the traces of a 7B model, run my Data Analyst Agent almost as well?**
+**A 1.5B model trained on the traces of a 7B model runs the [Data Analyst Agent](https://github.com/ALI-AL-MARJANI/Data-Analyst-Agent):<br>37/50 correct answers against 43/50 for the 7B, about 3 times faster.**
 
 </div>
 
