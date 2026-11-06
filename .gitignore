@@ -1,0 +1,23 @@
+# environments
+venv/
+.venv/
+.env
+
+# python
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+
+# downloaded / derived data (rebuilt by scripts/get_data.py; see RUNBOOK.md)
+data/raw/
+
+# model weights: base model (Hugging Face cache), fused models; adapters are small and kept in results/
+models/
+
+# editors / OS / local tooling
+.DS_Store
+.vscode/
+.idea/
+.claude/

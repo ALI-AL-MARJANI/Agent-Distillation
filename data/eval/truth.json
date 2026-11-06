@@ -1,0 +1,206 @@
+{
+  "csv_sha256": "1cd3bd62162dd16542519aaa23e61594a4791b8c43c27e07ff0185987d17bbc8",
+  "pandas": "3.1.1",
+  "truth": {
+    "q01": {
+      "kind": "number",
+      "value": 1044848
+    },
+    "q02": {
+      "kind": "number",
+      "value": 53628
+    },
+    "q03": {
+      "kind": "number",
+      "value": 43
+    },
+    "q04": {
+      "kind": "number",
+      "value": 4.590546067944811
+    },
+    "q05": {
+      "kind": "string",
+      "value": "Germany"
+    },
+    "q06": {
+      "kind": "string",
+      "value": "EIRE"
+    },
+    "q07": {
+      "kind": "number",
+      "value": 548332.3500000001
+    },
+    "q08": {
+      "kind": "string",
+      "value": "WORLD WAR 2 GLIDERS ASSTD DESIGNS"
+    },
+    "q09": {
+      "kind": "number",
+      "value": 22557
+    },
+    "q10": {
+      "kind": "number",
+      "value": 8292
+    },
+    "q11": {
+      "kind": "number",
+      "value": 28838.339999999986
+    },
+    "q12": {
+      "kind": "number",
+      "value": 235287
+    },
+    "q13": {
+      "kind": "string",
+      "value": "2011-11"
+    },
+    "q14": {
+      "kind": "number",
+      "value": 9111106.094
+    },
+    "q15": {
+      "kind": "number",
+      "value": 5.897514507693269
+    },
+    "q16": {
+      "kind": "string",
+      "value": "Thursday"
+    },
+    "q17": {
+      "kind": "number",
+      "value": 505.30000000000007
+    },
+    "q18": {
+      "kind": "number",
+      "value": 2750.5333285089196
+    },
+    "q19": {
+      "kind": "unanswerable",
+      "value": null
+    },
+    "q20": {
+      "kind": "unanswerable",
+      "value": null
+    },
+    "h01": {
+      "kind": "number",
+      "value": 5305
+    },
+    "h02": {
+      "kind": "number",
+      "value": 80995
+    },
+    "h03": {
+      "kind": "string",
+      "value": "Singapore"
+    },
+    "h04": {
+      "kind": "number",
+      "value": 181768
+    },
+    "h05": {
+      "kind": "number",
+      "value": 6024
+    },
+    "h06": {
+      "kind": "number",
+      "value": 20375065.778
+    },
+    "h07": {
+      "kind": "number",
+      "value": 1983
+    },
+    "h08": {
+      "kind": "number",
+      "value": 12
+    },
+    "h09": {
+      "kind": "number",
+      "value": 41
+    },
+    "h10": {
+      "kind": "unanswerable",
+      "value": null
+    },
+    "h11": {
+      "kind": "number",
+      "value": -53594.36
+    },
+    "h12": {
+      "kind": "number",
+      "value": 5942
+    },
+    "h13": {
+      "kind": "string",
+      "value": "85123A"
+    },
+    "h14": {
+      "kind": "number",
+      "value": 166511.91999999998
+    },
+    "h15": {
+      "kind": "number",
+      "value": 18102.0
+    },
+    "h16": {
+      "kind": "number",
+      "value": 17363
+    },
+    "h17": {
+      "kind": "number",
+      "value": 10421
+    },
+    "h18": {
+      "kind": "number",
+      "value": 1000417
+    },
+    "h19": {
+      "kind": "number",
+      "value": 2572
+    },
+    "h20": {
+      "kind": "number",
+      "value": 6.669931229711334
+    },
+    "h21": {
+      "kind": "number",
+      "value": 748957.02
+    },
+    "h22": {
+      "kind": "number",
+      "value": 2010
+    },
+    "h23": {
+      "kind": "number",
+      "value": 5265
+    },
+    "h24": {
+      "kind": "string",
+      "value": "2010-07"
+    },
+    "h25": {
+      "kind": "number",
+      "value": 1711
+    },
+    "h26": {
+      "kind": "number",
+      "value": 19.4832550160364
+    },
+    "h27": {
+      "kind": "number",
+      "value": 193.765
+    },
+    "h28": {
+      "kind": "number",
+      "value": 22.518777850941
+    },
+    "h29": {
+      "kind": "unanswerable",
+      "value": null
+    },
+    "h30": {
+      "kind": "unanswerable",
+      "value": null
+    }
+  }
+}

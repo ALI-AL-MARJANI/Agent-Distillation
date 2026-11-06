@@ -1,0 +1,321 @@
+{
+  "date": "2026-11-06T08:23:18+00:00",
+  "git_sha": "unknown",
+  "agent_commit": "ad9ed1871af245b50c966e0b6f12c79005e71e60",
+  "hardware": {
+    "machine": "arm64",
+    "platform": "macOS-15.6.1-arm64-arm-64bit",
+    "python": "3.12.15",
+    "cpu": "Apple M4",
+    "ram_gb": 16.0
+  },
+  "versions": {
+    "analyst": "0.1.0",
+    "langgraph": "1.2.20",
+    "langchain-core": "1.7.6",
+    "langchain-ollama": "1.1.0",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4"
+  },
+  "config": {
+    "seed": 0,
+    "n_questions": 300,
+    "n_valid": 30,
+    "max_jaccard": 0.6
+  },
+  "eval_questions_sha256": "df4da862847999f90ba70f2a5fde2264dfef9076e1aab2bc3373dfa073d9e7a4",
+  "train_questions_sha256": "d05b5df539f82804816833ec6e93b025e041d1035b169dff51402737b3d429aa",
+  "n_train": 270,
+  "n_valid": 30,
+  "per_template": {
+    "rows_country": 13,
+    "products_country": 13,
+    "quantity_month": 13,
+    "revenue_country": 13,
+    "customers_country": 13,
+    "top_product_country": 12,
+    "avg_price_country": 13,
+    "top_country_month": 13,
+    "rows_quantity_above": 12,
+    "revenue_price_above": 11,
+    "cancel_invoices_country": 13,
+    "quantity_stockcode": 13,
+    "rows_description_word": 12,
+    "revenue_month": 13,
+    "invoices_month": 13,
+    "customers_month": 13,
+    "best_month_country": 13,
+    "revenue_change_country": 13,
+    "invoices_weekday_year": 10,
+    "invoice_value": 13,
+    "avg_invoice_value_country": 12,
+    "missing_customer_country": 12,
+    "missing_field_country": 12,
+    "missing_field_product": 12
+  },
+  "per_category": {
+    "simple": 39,
+    "groupby": 64,
+    "filter": 61,
+    "dates": 75,
+    "tricky": 61
+  },
+  "skipped_candidates": {
+    "top_product_country": 1
+  },
+  "max_jaccard_allowed": 0.6,
+  "exact": [],
+  "near": [],
+  "closest": [
+    {
+      "eval": "How many rows have no customer ID?",
+      "closest_train": "How many rows from Switzerland have an empty Customer ID?",
+      "jaccard": 0.545
+    },
+    {
+      "eval": "How many distinct invoices were created in March 2011?",
+      "closest_train": "How many unique invoices were created on a Tuesday in 2011?",
+      "jaccard": 0.538
+    },
+    {
+      "eval": "How many distinct invoices were created on a Sunday?",
+      "closest_train": "How many unique invoices were created on a Tuesday in 2011?",
+      "jaccard": 0.538
+    },
+    {
+      "eval": "How many rows have a negative Quantity?",
+      "closest_train": "How many rows have a Description containing 'STAR'?",
+      "jaccard": 0.5
+    },
+    {
+      "eval": "What is the median total revenue per invoice (Quantity times Price summed per invoice)?",
+      "closest_train": "For USA, what is the mean of the per-invoice totals of Quantity times Price?",
+      "jaccard": 0.471
+    },
+    {
+      "eval": "What is the total revenue (Quantity times Price) for the Netherlands?",
+      "closest_train": "What is the total Quantity recorded for StockCode 84991?",
+      "jaccard": 0.462
+    },
+    {
+      "eval": "What is the total revenue (Quantity times Price) for Australia?",
+      "closest_train": "What is the total Quantity recorded for StockCode 84991?",
+      "jaccard": 0.462
+    },
+    {
+      "eval": "How many distinct customers (Customer ID) are in the data?",
+      "closest_train": "How many lines in the data come from customers in Singapore?",
+      "jaccard": 0.429
+    },
+    {
+      "eval": "In which month of 2010 was the total Quantity the lowest? Answer in YYYY-MM format.",
+      "closest_train": "For Singapore, in which month was the sum of Quantity * Price the highest? Reply as YYYY-MM.",
+      "jaccard": 0.429
+    },
+    {
+      "eval": "What is the average number of rows per invoice?",
+      "closest_train": "What is the sum of Quantity * Price for invoice number 550439?",
+      "jaccard": 0.429
+    },
+    {
+      "eval": "Which product Description has the highest total Quantity?",
+      "closest_train": "In Singapore, which Description has the largest summed Quantity?",
+      "jaccard": 0.417
+    },
+    {
+      "eval": "What is the total Quantity sold to France?",
+      "closest_train": "What is the total Quantity recorded for StockCode 84991?",
+      "jaccard": 0.417
+    },
+    {
+      "eval": "How many rows have a Price of exactly 0?",
+      "closest_train": "How many rows have a Description containing 'STAR'?",
+      "jaccard": 0.417
+    },
+    {
+      "eval": "How many rows have a Quantity greater than 100?",
+      "closest_train": "How many rows have a Description containing 'STAR'?",
+      "jaccard": 0.417
+    },
+    {
+      "eval": "Which month had the highest total revenue (Quantity times Price)? Answer in YYYY-MM format.",
+      "closest_train": "For Singapore, in which month was the sum of Quantity * Price the highest? Reply as YYYY-MM.",
+      "jaccard": 0.409
+    },
+    {
+      "eval": "How many distinct invoices are cancellations (the invoice number starts with the letter C)?",
+      "closest_train": "How many distinct cancellation invoices (Invoice starting with 'C') come from Singapore?",
+      "jaccard": 0.389
+    },
+    {
+      "eval": "What is the average total revenue per customer (Quantity times Price, summed per customer)?",
+      "closest_train": "For USA, what is the mean of the per-invoice totals of Quantity times Price?",
+      "jaccard": 0.389
+    },
+    {
+      "eval": "How many different countries appear in the data?",
+      "closest_train": "How many lines in the data come from customers in Singapore?",
+      "jaccard": 0.385
+    },
+    {
+      "eval": "What is the average value of the Price column?",
+      "closest_train": "What is the sum of the Quantity column for September 2010?",
+      "jaccard": 0.385
+    },
+    {
+      "eval": "What is the largest value in the Quantity column?",
+      "closest_train": "What is the sum of the Quantity column for September 2010?",
+      "jaccard": 0.385
+    },
+    {
+      "eval": "What is the average Price of the rows where Quantity is exactly 1?",
+      "closest_train": "What is the sum of Quantity * Price for invoice number 550439?",
+      "jaccard": 0.375
+    },
+    {
+      "eval": "What is the total revenue (Quantity times Price) of the rows where Price is above 100?",
+      "closest_train": "For USA, what is the mean of the per-invoice totals of Quantity times Price?",
+      "jaccard": 0.368
+    },
+    {
+      "eval": "How many distinct customers have at least one cancelled invoice (invoice number starting with C)?",
+      "closest_train": "How many distinct cancellation invoices (Invoice starting with 'C') come from Singapore?",
+      "jaccard": 0.368
+    },
+    {
+      "eval": "How many rows does the dataset have?",
+      "closest_train": "How many rows have a Description containing 'STAR'?",
+      "jaccard": 0.364
+    },
+    {
+      "eval": "What is the total value of invoice 489434?",
+      "closest_train": "What is the sum of Quantity * Price for invoice number 550439?",
+      "jaccard": 0.357
+    },
+    {
+      "eval": "By how many percent did Germany's total revenue (Quantity times Price) change from 2010 to 2011? Give the percentage, e.g. 12.5 for +12.5 %.",
+      "closest_train": "Percent change of the Quantity * Price total for Spain, 2011 compared with 2010 (e.g. -3.2 for -3.2 %)?",
+      "jaccard": 0.355
+    },
+    {
+      "eval": "What was the total revenue (Quantity times Price) in December 2010?",
+      "closest_train": "How much money (Quantity times Price, summed) was billed in September 2010?",
+      "jaccard": 0.353
+    },
+    {
+      "eval": "What is the total revenue (Quantity times Price) of the invoices that are not cancellations (the invoice number does not start with C)?",
+      "closest_train": "What is the sum of Quantity * Price for invoice number 550439?",
+      "jaccard": 0.348
+    },
+    {
+      "eval": "Apart from the United Kingdom, which country has the most distinct customers?",
+      "closest_train": "During September 2010, which country other than the United Kingdom had the most rows?",
+      "jaccard": 0.333
+    },
+    {
+      "eval": "What was the total revenue (Quantity times Price) in calendar year 2010?",
+      "closest_train": "How much money (Quantity times Price, summed) was billed in September 2010?",
+      "jaccard": 0.333
+    },
+    {
+      "eval": "How many distinct StockCode values are there?",
+      "closest_train": "How many different StockCode values were sold to USA?",
+      "jaccard": 0.333
+    },
+    {
+      "eval": "Which StockCode appears in the most rows?",
+      "closest_train": "Count the rows where the text VINTAGE appears in Description.",
+      "jaccard": 0.333
+    },
+    {
+      "eval": "How many rows come from Germany?",
+      "closest_train": "How many rows from Switzerland have an empty Customer ID?",
+      "jaccard": 0.333
+    },
+    {
+      "eval": "What is the average age of the customers?",
+      "closest_train": "What is the average marketing spend for StockCode 85099B?",
+      "jaccard": 0.333
+    },
+    {
+      "eval": "What is the total Quantity of the rows whose Description contains the word HEART?",
+      "closest_train": "What is the total Quantity recorded for StockCode 84991?",
+      "jaccard": 0.312
+    },
+    {
+      "eval": "What is the average delivery time in days?",
+      "closest_train": "What is the average marketing spend for StockCode 85099B?",
+      "jaccard": 0.308
+    },
+    {
+      "eval": "How many distinct customers bought from Spain?",
+      "closest_train": "How many lines in the data come from customers in Singapore?",
+      "jaccard": 0.308
+    },
+    {
+      "eval": "Which Customer ID has the highest total revenue (Quantity times Price)? Answer with the ID.",
+      "closest_train": "Find the YYYY-MM month with the largest Quantity times Price total for Netherlands.",
+      "jaccard": 0.3
+    },
+    {
+      "eval": "What is the smallest value in the Price column?",
+      "closest_train": "What is the sum of the Quantity column for September 2010?",
+      "jaccard": 0.286
+    },
+    {
+      "eval": "Which hour of the day (0 to 23) has the most rows?",
+      "closest_train": "Which product Description sold the most units (sum of Quantity) to Spain?",
+      "jaccard": 0.278
+    },
+    {
+      "eval": "How many distinct invoice numbers are there?",
+      "closest_train": "How many distinct cancellation invoices (Invoice starting with 'C') come from Singapore?",
+      "jaccard": 0.267
+    },
+    {
+      "eval": "How many distinct customers bought something in November 2011?",
+      "closest_train": "How many unique Customer ID values appear in September 2011?",
+      "jaccard": 0.267
+    },
+    {
+      "eval": "Apart from the United Kingdom, which country has the highest total revenue (Quantity times Price)?",
+      "closest_train": "Find the YYYY-MM month with the largest Quantity times Price total for United Arab Emirates.",
+      "jaccard": 0.261
+    },
+    {
+      "eval": "On which day of the week (for example Monday) were the most distinct invoices created?",
+      "closest_train": "How many unique invoices were created on a Monday in 2011?",
+      "jaccard": 0.25
+    },
+    {
+      "eval": "What was the total profit in 2011?",
+      "closest_train": "What is the total Quantity recorded for StockCode 84991?",
+      "jaccard": 0.231
+    },
+    {
+      "eval": "Which country has the highest average Price?",
+      "closest_train": "In Singapore, which Description has the largest summed Quantity?",
+      "jaccard": 0.231
+    },
+    {
+      "eval": "Which year (2009, 2010 or 2011) has the most distinct invoices?",
+      "closest_train": "In 2011, count the distinct invoices whose InvoiceDate falls on a Wednesday.",
+      "jaccard": 0.211
+    },
+    {
+      "eval": "Which product category sells best?",
+      "closest_train": "Which supplier is linked to product 84879?",
+      "jaccard": 0.2
+    },
+    {
+      "eval": "What percentage of rows have no Customer ID? Give the percentage, e.g. 12.5 for 12.5 %.",
+      "closest_train": "Count the Sweden rows where Customer ID is missing.",
+      "jaccard": 0.2
+    },
+    {
+      "eval": "Which payment method is used most often?",
+      "closest_train": "Which supplier is linked to product 84879?",
+      "jaccard": 0.167
+    }
+  ]
+}

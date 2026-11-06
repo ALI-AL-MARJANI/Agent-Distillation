@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "distill"
+version = "0.1.0"
+description = "Distilling a LangGraph data analyst agent (Qwen2.5-Coder 7B) into Qwen2.5-Coder 1.5B with LoRA on filtered teacher traces."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12,<3.14"
+authors = [{ name = "Ali Al Marjani" }]
+dependencies = [
+    # The agent, unchanged (graph, sandbox, scoring), pinned to one commit of Data-Analyst-Agent
+    "analyst @ git+https://github.com/ALI-AL-MARJANI/Data-Analyst-Agent@ad9ed1871af245b50c966e0b6f12c79005e71e60",
+    "pandas>=3.1,<4",
+    "pyyaml>=6.0",
+    "jinja2>=3.1",
+]
+
+[project.optional-dependencies]
+# Only needed once, to convert the UCI .xlsx into a CSV
+data = ["openpyxl>=3.1"]
+dev = [
+    "pytest>=9.0",
+    "ruff>=0.8",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/distill"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -m 'not slow'"
+markers = ["slow: needs the dataset, a running Ollama server or a downloaded model"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+src = ["src", "scripts", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]

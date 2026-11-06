@@ -1,0 +1,26 @@
+{
+  "source": "UCI Machine Learning Repository, Online Retail II (Chen, 2012)",
+  "doi": "10.24432/C5CG6D",
+  "license": "CC BY 4.0",
+  "url": "https://archive.ics.uci.edu/static/public/502/online+retail+ii.zip",
+  "zip_sha256": "572e36277c2390fbfde10664750731e0a86f55e33470d91919085f0408e67bfb",
+  "sheets": {
+    "Year 2009-2010": 525461,
+    "Year 2010-2011": 541910
+  },
+  "dropped_overlap_rows": 22523,
+  "rows": 1044848,
+  "columns": [
+    "Invoice",
+    "StockCode",
+    "Description",
+    "Quantity",
+    "InvoiceDate",
+    "Price",
+    "Customer ID",
+    "Country"
+  ],
+  "csv_sha256": "1cd3bd62162dd16542519aaa23e61594a4791b8c43c27e07ff0185987d17bbc8",
+  "date_min": "2009-12-01 07:45:00",
+  "date_max": "2011-12-09 12:50:00"
+}

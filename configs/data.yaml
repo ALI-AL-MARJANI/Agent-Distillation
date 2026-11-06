@@ -1,0 +1,5 @@
+# Training questions (scripts/make_train_questions.py). The evaluation questions live in data/eval/ and are frozen.
+seed: 0
+n_questions: 300     # start small; add more only if the student needs more data
+n_valid: 30          # validation loss during LoRA training (split by question, not by step)
+max_jaccard: 0.6     # a training question at or above this word overlap with an eval question = leak

@@ -1,0 +1,65 @@
+# Evaluation questions. NEVER used for training (tests/test_split.py checks it and pins this file's hash).
+# q01-q20 (dev) and h01-h10 (held-out) are copied unchanged from Data-Analyst-Agent at commit ad9ed18.
+# h11-h30: new held-out questions written on 2026-11-06, before any teacher trace or training run.
+# Answers are not written here: scripts/build_eval_truth.py computes them (-> data/eval/truth.json).
+# kind: number (0.1 % / 0.01 tolerance), string (case-insensitive), unanswerable (the agent must refuse).
+- {id: q01, category: simple, kind: number, question: "How many rows does the dataset have?"}
+- {id: q02, category: simple, kind: number, question: "How many distinct invoice numbers are there?"}
+- {id: q03, category: simple, kind: number, question: "How many different countries appear in the data?"}
+- {id: q04, category: simple, kind: number, question: "What is the average value of the Price column?"}
+
+- {id: q05, category: groupby, kind: string, question: "Apart from the United Kingdom, which country has the most distinct customers?"}
+- {id: q06, category: groupby, kind: string, question: "Apart from the United Kingdom, which country has the highest total revenue (Quantity times Price)?"}
+- {id: q07, category: groupby, kind: number, question: "What is the total revenue (Quantity times Price) for the Netherlands?"}
+- {id: q08, category: groupby, kind: string, question: "Which product Description has the highest total Quantity?"}
+
+- {id: q09, category: filter, kind: number, question: "How many rows have a negative Quantity?"}
+- {id: q10, category: filter, kind: number, question: "How many distinct invoices are cancellations (the invoice number starts with the letter C)?"}
+- {id: q11, category: filter, kind: number, question: "What is the total revenue (Quantity times Price) of the rows where Price is above 100?"}
+- {id: q12, category: filter, kind: number, question: "How many rows have no customer ID?"}
+
+- {id: q13, category: dates, kind: string, question: "Which month had the highest total revenue (Quantity times Price)? Answer in YYYY-MM format."}
+- {id: q14, category: dates, kind: number, question: "What was the total revenue (Quantity times Price) in calendar year 2010?"}
+- {id: q15, category: dates, kind: number, question: "By how many percent did Germany's total revenue (Quantity times Price) change from 2010 to 2011? Give the percentage, e.g. 12.5 for +12.5 %."}
+- {id: q16, category: dates, kind: string, question: "On which day of the week (for example Monday) were the most distinct invoices created?"}
+
+# tricky: a column trap (Price is a unit price, Invoice is text), missing values, two questions the data can't answer
+- {id: q17, category: tricky, kind: number, question: "What is the total value of invoice 489434?"}
+- {id: q18, category: tricky, kind: number, question: "What is the average total revenue per customer (Quantity times Price, summed per customer)?"}
+- {id: q19, category: tricky, kind: unanswerable, question: "What was the total profit in 2011?"}
+- {id: q20, category: tricky, kind: unanswerable, question: "What is the average delivery time in days?"}
+
+# Held-out set, written on 2026-10-29 after the first (v1) run and BEFORE the v2 changes. The v2 changes were
+# chosen by looking at v1 failures on q01-q20, so only these 10 questions measure v2 without that bias.
+- {id: h01, split: heldout, category: simple, kind: number, question: "How many distinct StockCode values are there?"}
+- {id: h02, split: heldout, category: simple, kind: number, question: "What is the largest value in the Quantity column?"}
+- {id: h03, split: heldout, category: groupby, kind: string, question: "Which country has the highest average Price?"}
+- {id: h04, split: heldout, category: groupby, kind: number, question: "What is the total Quantity sold to France?"}
+- {id: h05, split: heldout, category: filter, kind: number, question: "How many rows have a Price of exactly 0?"}
+- {id: h06, split: heldout, category: filter, kind: number, question: "What is the total revenue (Quantity times Price) of the invoices that are not cancellations (the invoice number does not start with C)?"}
+- {id: h07, split: heldout, category: dates, kind: number, question: "How many distinct invoices were created in March 2011?"}
+- {id: h08, split: heldout, category: dates, kind: number, question: "Which hour of the day (0 to 23) has the most rows?"}
+- {id: h09, split: heldout, category: tricky, kind: number, question: "How many distinct customers bought from Spain?"}
+- {id: h10, split: heldout, category: tricky, kind: unanswerable, question: "Which product category sells best?"}
+
+# New held-out set (2026-11-06), written before any teacher trace, frozen before training.
+- {id: h11, split: heldout, category: simple, kind: number, question: "What is the smallest value in the Price column?"}
+- {id: h12, split: heldout, category: simple, kind: number, question: "How many distinct customers (Customer ID) are in the data?"}
+- {id: h13, split: heldout, category: groupby, kind: string, question: "Which StockCode appears in the most rows?"}
+- {id: h14, split: heldout, category: groupby, kind: number, question: "What is the total revenue (Quantity times Price) for Australia?"}
+- {id: h15, split: heldout, category: groupby, kind: number, question: "Which Customer ID has the highest total revenue (Quantity times Price)? Answer with the ID."}
+- {id: h16, split: heldout, category: groupby, kind: number, question: "How many rows come from Germany?"}
+- {id: h17, split: heldout, category: filter, kind: number, question: "How many rows have a Quantity greater than 100?"}
+- {id: h18, split: heldout, category: filter, kind: number, question: "What is the total Quantity of the rows whose Description contains the word HEART?"}
+- {id: h19, split: heldout, category: filter, kind: number, question: "How many distinct customers have at least one cancelled invoice (invoice number starting with C)?"}
+- {id: h20, split: heldout, category: filter, kind: number, question: "What is the average Price of the rows where Quantity is exactly 1?"}
+- {id: h21, split: heldout, category: dates, kind: number, question: "What was the total revenue (Quantity times Price) in December 2010?"}
+- {id: h22, split: heldout, category: dates, kind: number, question: "Which year (2009, 2010 or 2011) has the most distinct invoices?"}
+- {id: h23, split: heldout, category: dates, kind: number, question: "How many distinct invoices were created on a Sunday?"}
+- {id: h24, split: heldout, category: dates, kind: string, question: "In which month of 2010 was the total Quantity the lowest? Answer in YYYY-MM format."}
+- {id: h25, split: heldout, category: dates, kind: number, question: "How many distinct customers bought something in November 2011?"}
+- {id: h26, split: heldout, category: tricky, kind: number, question: "What is the average number of rows per invoice?"}
+- {id: h27, split: heldout, category: tricky, kind: number, question: "What is the median total revenue per invoice (Quantity times Price summed per invoice)?"}
+- {id: h28, split: heldout, category: tricky, kind: number, question: "What percentage of rows have no Customer ID? Give the percentage, e.g. 12.5 for 12.5 %."}
+- {id: h29, split: heldout, category: tricky, kind: unanswerable, question: "What is the average age of the customers?"}
+- {id: h30, split: heldout, category: tricky, kind: unanswerable, question: "Which payment method is used most often?"}
