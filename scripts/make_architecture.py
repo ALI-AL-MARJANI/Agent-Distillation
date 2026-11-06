@@ -74,11 +74,12 @@ def main() -> None:
     arrow(ax, (xs[3] - 0.1, bottom), (xs[2] + 0.11, bottom))
     arrow(ax, (xs[2] - 0.11, bottom), (xs[1] + 0.06, bottom))
 
-    # result next to the evaluation box
-    res = (f"correct answers\nstudent before: {ev['student_base']['n_correct']}/50\n"
+    # result box, fed by the evaluation box
+    res = (f"student before: {ev['student_base']['n_correct']}/50\n"
            f"student distilled: {ev['student_distilled']['n_correct']}/50\n"
            f"teacher: {ev['teacher']['n_correct']}/50")  # fmt: skip
-    ax.text(0.02, bottom, res, ha="left", va="center", fontsize=10, color=INK, linespacing=1.5)
+    box(ax, 0.1, bottom, "Correct answers", res, INK, w=0.17, h=0.29)
+    arrow(ax, (xs[1] - 0.14, bottom), (0.185, bottom))
     ax.text(0.0, 0.98, "Distilling the agent: the student learns only from the teacher's correct traces",
             fontsize=14, weight="bold", color=INK, va="top")  # fmt: skip
 
