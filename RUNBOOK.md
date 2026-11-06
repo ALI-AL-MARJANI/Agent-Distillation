@@ -37,7 +37,8 @@ Without a local zip, `python scripts/get_data.py` downloads it from UCI (it took
 
 ## 2. Teacher traces, filtering, training, evaluation
 
-Start Ollama first (`ollama serve`, or the menu bar app). Times marked "not measured yet" are filled in once run.
+Start Ollama **0.18.2** with `ollama serve` (the menu bar app can auto-update; 0.40.15 no longer merges consecutive
+user messages, which changes the retry prompt, see `tests/test_ollama_template.py`). Times marked "not measured yet" are filled in once run.
 
 | Step | Command | Time (M4) | Output |
 |---|---|---|---|
@@ -49,7 +50,7 @@ Start Ollama first (`ollama serve`, or the menu bar app). Times marked "not meas
 | LoRA training | `python scripts/train.py` | 51 min (3,058.5 s) | `results/train/lora.json`, `loss.png`, `adapter/` |
 | Fuse adapter into the weights | `mlx_lm.fuse --model models/qwen2.5-coder-1.5b-instruct --adapter-path models/adapters/distilled --save-path models/fused-distilled` | 6 s | `models/fused-distilled/` |
 | Distilled student into Ollama | `python scripts/import_ollama.py models/fused-distilled student-distilled` | not measured yet | Ollama model `student-distilled` |
-| Evaluation, 50 questions, per model | `python scripts/evaluate.py --config configs/<teacher, student_base, student_distilled>.yaml` | not measured yet | `results/eval/<name>.json` + `_per_question.jsonl` |
+| Evaluation, 50 questions, per model | `python scripts/evaluate.py --config configs/<teacher, student_base, student_distilled>.yaml` | 18 min, 12 min 35 s, 6 min 34 s | `results/eval/<name>.json` + `_per_question.jsonl` |
 | Ollama template check (slow test) | `pytest -m slow tests/test_ollama_template.py` | 5 s | - |
 
 Student weights:
