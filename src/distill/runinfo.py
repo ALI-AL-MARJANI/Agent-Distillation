@@ -35,7 +35,12 @@ def git_sha() -> str:
         sha = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=REPO_ROOT, text=True, stderr=subprocess.DEVNULL
         ).strip()
-        dirty = subprocess.call(["git", "diff", "--quiet", "HEAD"], cwd=REPO_ROOT) != 0
+        # "-dirty" = uncommitted code, config or input data. results/ is excluded: it holds the outputs, and
+        # counting it would mark every script dirty as soon as an earlier script had written its result file.
+        dirty = (
+            subprocess.call(["git", "diff", "--quiet", "HEAD", "--", ".", ":(exclude)results"], cwd=REPO_ROOT)
+            != 0
+        )
         return sha + ("-dirty" if dirty else "")
     except (OSError, subprocess.CalledProcessError):
         return "unknown"  # no commit yet
