@@ -1,0 +1,23 @@
+# Manual labels of the distilled student's 13 failures (results/eval/student_distilled_per_question.jsonl),
+# written by reading each question's code and result. One category per failure. scripts/analyze_eval.py counts them.
+categories:
+  answers_unanswerable: "Answers a question the data can't answer, with an invented proxy"
+  result_not_stored: "Computes on the last line but leaves `result` holding an intermediate value"
+  drops_part_of_question: "Ignores a constraint or the requested format"
+  wrong_aggregation: "Wrong aggregation or a pandas operator bug"
+  crash_not_fixed: "Crashes and the retries repeat the broken code"
+
+labels:
+  q19: {category: answers_unanswerable, note: "invents cost_price = 1 and filters on 1 January 2011"}
+  q20: {category: answers_unanswerable, note: "'delivery time' becomes the gap between consecutive invoice dates"}
+  h10: {category: answers_unanswerable, note: "searches the word 'category' in Description (then crashes 4 times)"}
+  h06: {category: result_not_stored, note: "`result = df[...]['Revenue'] = ...` then `result.sum()` on its own line"}
+  h14: {category: result_not_stored, note: "`result` = the per-row products; `result.sum()` is never stored"}
+  q06: {category: drops_part_of_question, note: "forgets 'apart from the United Kingdom', returns United Kingdom"}
+  q15: {category: drops_part_of_question, note: "compares January with December instead of 2010 with 2011"}
+  q16: {category: drops_part_of_question, note: "returns 3 (day number) instead of 'Thursday', and counts rows, not distinct invoices"}
+  q05: {category: wrong_aggregation, note: "nunique() on the whole column (no group-by), then returns the max Customer ID"}
+  q12: {category: wrong_aggregation, note: "`isna() | col == ''`: `|` binds before `==`, so the count is 0"}
+  h26: {category: wrong_aggregation, note: "mean Quantity per invoice instead of the number of rows per invoice"}
+  h27: {category: wrong_aggregation, note: "mean per invoice instead of the sum per invoice, before the median"}
+  q13: {category: crash_not_fixed, note: "formats a Period with :04d; attempts 3 and 4 are the same broken code"}
