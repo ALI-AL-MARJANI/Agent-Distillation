@@ -1,6 +1,6 @@
 {
-  "date": "2026-11-06T08:23:18+00:00",
-  "git_sha": "unknown",
+  "date": "2026-11-06T13:28:02+00:00",
+  "git_sha": "ddb7e635fb1244697279ed2b69f10fb9fbf197b1",
   "agent_commit": "ad9ed1871af245b50c966e0b6f12c79005e71e60",
   "hardware": {
     "machine": "arm64",
@@ -15,7 +15,9 @@
     "langchain-core": "1.7.6",
     "langchain-ollama": "1.1.0",
     "pandas": "3.1.1",
-    "numpy": "2.5.4"
+    "numpy": "2.5.4",
+    "mlx": "0.32.4",
+    "mlx-lm": "0.32.2"
   },
   "config": {
     "seed": 0,
